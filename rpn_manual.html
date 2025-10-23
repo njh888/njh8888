@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+  <title>rpn_manual.nim</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2280%22>🐳</text></svg>">
+  <meta content="text/html; charset=utf-8" http-equiv="content-type">
+  <meta content="width=device-width, initial-scale=1" name="viewport">
+  <meta content="nimib 0.3.12" name="generator">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/light.min.css">
+  <link rel='stylesheet' href='https://cdn.jsdelivr.net/gh/pietroppeter/nimib/assets/atom-one-light.css'>
+    <script src="https://cdn.jsdelivr.net/gh/pietroppeter/nimib@main/assets/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+
+  <style>
+.nb-box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.nb-small {
+  font-size: 0.8rem;
+}
+button.nb-small {
+  float: right;
+  padding: 2px;
+  padding-right: 5px;
+  padding-left: 5px;
+}
+section#source {
+  display:none
+}
+pre > code {
+  font-size: 1.2em;
+}
+.nb-output {
+  line-height: 1.15;
+}
+figure {
+  margin: 2rem 0;
+}
+figcaption {
+  text-align: center;
+}
+  
+</style>
+  
+</head>
+<body>
+<header>
+<div class="nb-box">
+  <span><a href=".">🏡</a></span>
+  <span><code>rpn_manual.nim</code></span>
+  <span></span>
+</div>
+<hr>
+</header><main>
+<h1>RPN计算器使用手册</h1>
+<h2>简介</h2>
+<p>逆波兰表示法（Reverse Polish Notation，RPN）计算器，使用C++实现，支持基础四则运算和高级数学函数。</p>
+<h2>安装和编译</h2>
+<h3>编译命令：</h3>
+<pre><code class="nohighlight hljs nim"><span class="hljs-keyword">echo</span> <span class="hljs-string">&quot;g++ -std=c++11 -o rpn_calc rpn_calc.cpp&quot;</span></code></pre><pre class="nb-output">g++ -std=c++11 -o rpn_calc rpn_calc.cpp</pre>
+<h3>运行程序：</h3>
+<pre><code class="nohighlight hljs nim"><span class="hljs-keyword">echo</span> <span class="hljs-string">&quot;./rpn_calc&quot;</span></code></pre><pre class="nb-output">./rpn_calc</pre>
+<h2>基本使用示例</h2>
+<pre><code class="nohighlight hljs nim"><span class="hljs-keyword">echo</span> <span class="hljs-string">&quot;示例输入和输出：&quot;</span>
+<span class="hljs-keyword">echo</span> <span class="hljs-string">&quot;输入: '5 5 +'&quot;</span>
+<span class="hljs-keyword">echo</span> <span class="hljs-string">&quot;输出: 结果: 10&quot;</span>
+<span class="hljs-keyword">echo</span> <span class="hljs-string">&quot;&quot;</span>
+<span class="hljs-keyword">echo</span> <span class="hljs-string">&quot;输入: '1 2 + 3 + 7 7 * +'&quot;</span>
+<span class="hljs-keyword">echo</span> <span class="hljs-string">&quot;输出: 结果: 55&quot;</span>
+<span class="hljs-keyword">echo</span> <span class="hljs-string">&quot;&quot;</span>
+<span class="hljs-keyword">echo</span> <span class="hljs-string">&quot;输入: '16 sqrt'&quot;</span>
+<span class="hljs-keyword">echo</span> <span class="hljs-string">&quot;输出: 结果: 4&quot;</span>
+<span class="hljs-keyword">echo</span> <span class="hljs-string">&quot;&quot;</span>
+<span class="hljs-keyword">echo</span> <span class="hljs-string">&quot;输入: '5 fib'&quot;</span>
+<span class="hljs-keyword">echo</span> <span class="hljs-string">&quot;输出: 结果: 5&quot;</span></code></pre><pre class="nb-output">示例输入和输出：
+输入: '5 5 +'
+输出: 结果: 10
+
+输入: '1 2 + 3 + 7 7 * +'
+输出: 结果: 55
+
+输入: '16 sqrt'
+输出: 结果: 4
+
+输入: '5 fib'
+输出: 结果: 5</pre>
+<h2>支持的操作符</h2>
+<h3>基础运算</h3>
+<ul>
+<li><code>+</code> - 加法：<code>a b +</code> → a + b</li>
+</ul>
+<ul>
+<li><code>-</code> - 减法：<code>a b -</code> → a - b</li>
+</ul>
+<ul>
+<li><code>*</code> - 乘法：<code>a b *</code> → a × b</li>
+</ul>
+<ul>
+<li><code>/</code> - 除法：<code>a b /</code> → a ÷ b</li>
+</ul>
+<h3>高级运算</h3>
+<ul>
+<li><code>sqrt</code> - 平方根：<code>a sqrt</code> → √a</li>
+</ul>
+<ul>
+<li><code>^</code> - 幂运算：<code>a b ^</code> → aᵇ</li>
+</ul>
+<ul>
+<li><code>fib</code> - 斐波那契数：<code>n fib</code> → 第n个斐波那契数</li>
+</ul>
+<h3>栈操作命令</h3>
+<ul>
+<li><code>clear</code> - 清空栈</li>
+</ul>
+<ul>
+<li><code>show</code> - 显示当前栈内容</li>
+</ul>
+<ul>
+<li><code>history</code> - 显示计算历史</li>
+</ul>
+<ul>
+<li><code>help</code> - 显示帮助信息</li>
+</ul>
+<ul>
+<li><code>q</code> - 退出程序</li>
+</ul>
+<h2>错误处理</h2>
+<h3>常见错误类型</h3>
+<ul>
+<li><strong>栈空错误</strong>: 当尝试从空栈弹出元素时发生</li>
+</ul>
+<ul>
+<li><strong>操作数不足</strong>: 当运算需要更多操作数时发生</li>
+</ul>
+<ul>
+<li><strong>除零错误</strong>: 除法运算中除数为零</li>
+</ul>
+<ul>
+<li><strong>无效输入</strong>: 输入了未知操作符或格式错误的数字</li>
+</ul>
+<h2>批量计算</h2>
+<p>支持在单行输入完整的RPN表达式：</p>
+<pre><code class="nohighlight hljs nim"><span class="hljs-keyword">echo</span> <span class="hljs-string">&quot;&gt; 3 4 5 * + 2 -&quot;</span>
+<span class="hljs-keyword">echo</span> <span class="hljs-string">&quot;结果: 21&quot;</span></code></pre><pre class="nb-output">&gt; 3 4 5 * + 2 -
+结果: 21</pre>
+<p>计算过程：</p>
+<ol>
+<li>3 → 栈: [3]</li>
+</ol>
+<ol start="2">
+<li>4 → 栈: [3, 4]</li>
+</ol>
+<ol start="3">
+<li>5 → 栈: [3, 4, 5]</li>
+</ol>
+<ol start="4">
+<li>
+<ul>
+<li>→ 栈: [3, 20] (4*5=20)</li>
+</ul>
+</li>
+</ol>
+<ol start="5">
+<li>
+<ul>
+<li>→ 栈: [23] (3+20=23)</li>
+</ul>
+</li>
+</ol>
+<ol start="6">
+<li>2 → 栈: [23, 2]</li>
+</ol>
+<ol start="7">
+<li>
+<ul>
+<li>→ 栈: [21] (23-2=21)</li>
+</ul>
+</li>
+</ol>
+</main>
+<footer>
+<div class="nb-box">
+  <span><span class="nb-small">made with <a href="https://pietroppeter.github.io/nimib/">nimib 🐳</a></span></span>
+  <span></span>
+  <span><button class="nb-small" id="show" onclick="toggleSourceDisplay()">Show Source</button></span>
+</div>
+</footer>
+<section id="source">
+<pre><code class="nohighlight nim hljs"><span class="hljs-comment"># rpn_manual.nim</span>
+<span class="hljs-keyword">import</span> nimib
+
+nbInit
+
+nbText: <span class="hljs-string">&quot;# RPN计算器使用手册&quot;</span>
+
+nbText: <span class="hljs-string">&quot;## 简介&quot;</span>
+nbText: <span class="hljs-string">&quot;逆波兰表示法（Reverse Polish Notation，RPN）计算器，使用C++实现，支持基础四则运算和高级数学函数。&quot;</span>
+
+nbText: <span class="hljs-string">&quot;## 安装和编译&quot;</span>
+
+nbText: <span class="hljs-string">&quot;### 编译命令：&quot;</span>
+nbCode:
+  <span class="hljs-keyword">echo</span> <span class="hljs-string">&quot;g++ -std=c++11 -o rpn_calc rpn_calc.cpp&quot;</span>
+
+nbText: <span class="hljs-string">&quot;### 运行程序：&quot;</span>
+nbCode:
+  <span class="hljs-keyword">echo</span> <span class="hljs-string">&quot;./rpn_calc&quot;</span>
+
+nbText: <span class="hljs-string">&quot;## 基本使用示例&quot;</span>
+
+nbCode:
+  <span class="hljs-keyword">echo</span> <span class="hljs-string">&quot;示例输入和输出：&quot;</span>
+  <span class="hljs-keyword">echo</span> <span class="hljs-string">&quot;输入: '5 5 +'&quot;</span>
+  <span class="hljs-keyword">echo</span> <span class="hljs-string">&quot;输出: 结果: 10&quot;</span>
+  <span class="hljs-keyword">echo</span> <span class="hljs-string">&quot;&quot;</span>
+  <span class="hljs-keyword">echo</span> <span class="hljs-string">&quot;输入: '1 2 + 3 + 7 7 * +'&quot;</span>
+  <span class="hljs-keyword">echo</span> <span class="hljs-string">&quot;输出: 结果: 55&quot;</span>
+  <span class="hljs-keyword">echo</span> <span class="hljs-string">&quot;&quot;</span>
+  <span class="hljs-keyword">echo</span> <span class="hljs-string">&quot;输入: '16 sqrt'&quot;</span>
+  <span class="hljs-keyword">echo</span> <span class="hljs-string">&quot;输出: 结果: 4&quot;</span>
+  <span class="hljs-keyword">echo</span> <span class="hljs-string">&quot;&quot;</span>
+  <span class="hljs-keyword">echo</span> <span class="hljs-string">&quot;输入: '5 fib'&quot;</span>
+  <span class="hljs-keyword">echo</span> <span class="hljs-string">&quot;输出: 结果: 5&quot;</span>
+
+nbText: <span class="hljs-string">&quot;## 支持的操作符&quot;</span>
+
+nbText: <span class="hljs-string">&quot;### 基础运算&quot;</span>
+nbText: <span class="hljs-string">&quot;- `+` - 加法：`a b +` → a + b&quot;</span>
+nbText: <span class="hljs-string">&quot;- `-` - 减法：`a b -` → a - b&quot;</span>  
+nbText: <span class="hljs-string">&quot;- `*` - 乘法：`a b *` → a × b&quot;</span>
+nbText: <span class="hljs-string">&quot;- `/` - 除法：`a b /` → a ÷ b&quot;</span>
+
+nbText: <span class="hljs-string">&quot;### 高级运算&quot;</span>
+nbText: <span class="hljs-string">&quot;- `sqrt` - 平方根：`a sqrt` → √a&quot;</span>
+nbText: <span class="hljs-string">&quot;- `^` - 幂运算：`a b ^` → aᵇ&quot;</span>
+nbText: <span class="hljs-string">&quot;- `fib` - 斐波那契数：`n fib` → 第n个斐波那契数&quot;</span>
+
+nbText: <span class="hljs-string">&quot;### 栈操作命令&quot;</span>
+nbText: <span class="hljs-string">&quot;- `clear` - 清空栈&quot;</span>
+nbText: <span class="hljs-string">&quot;- `show` - 显示当前栈内容&quot;</span>
+nbText: <span class="hljs-string">&quot;- `history` - 显示计算历史&quot;</span>
+nbText: <span class="hljs-string">&quot;- `help` - 显示帮助信息&quot;</span>
+nbText: <span class="hljs-string">&quot;- `q` - 退出程序&quot;</span>
+
+nbText: <span class="hljs-string">&quot;## 错误处理&quot;</span>
+
+nbText: <span class="hljs-string">&quot;### 常见错误类型&quot;</span>
+nbText: <span class="hljs-string">&quot;- **栈空错误**: 当尝试从空栈弹出元素时发生&quot;</span>
+nbText: <span class="hljs-string">&quot;- **操作数不足**: 当运算需要更多操作数时发生&quot;</span>
+nbText: <span class="hljs-string">&quot;- **除零错误**: 除法运算中除数为零&quot;</span>
+nbText: <span class="hljs-string">&quot;- **无效输入**: 输入了未知操作符或格式错误的数字&quot;</span>
+
+nbText: <span class="hljs-string">&quot;## 批量计算&quot;</span>
+nbText: <span class="hljs-string">&quot;支持在单行输入完整的RPN表达式：&quot;</span>
+nbCode:
+  <span class="hljs-keyword">echo</span> <span class="hljs-string">&quot;&gt; 3 4 5 * + 2 -&quot;</span>
+  <span class="hljs-keyword">echo</span> <span class="hljs-string">&quot;结果: 21&quot;</span>
+
+nbText: <span class="hljs-string">&quot;计算过程：&quot;</span>
+nbText: <span class="hljs-string">&quot;1. 3 → 栈: [3]&quot;</span>
+nbText: <span class="hljs-string">&quot;2. 4 → 栈: [3, 4]&quot;</span>
+nbText: <span class="hljs-string">&quot;3. 5 → 栈: [3, 4, 5]&quot;</span>
+nbText: <span class="hljs-string">&quot;4. * → 栈: [3, 20] (4*5=20)&quot;</span>
+nbText: <span class="hljs-string">&quot;5. + → 栈: [23] (3+20=23)&quot;</span>
+nbText: <span class="hljs-string">&quot;6. 2 → 栈: [23, 2]&quot;</span>
+nbText: <span class="hljs-string">&quot;7. - → 栈: [21] (23-2=21)&quot;</span>
+
+nbSave
+</code></pre>
+</section><script>
+function toggleSourceDisplay() {
+  var btn = document.getElementById("show")
+  var source = document.getElementById("source");
+  if (btn.innerHTML=="Show Source") {
+    btn.innerHTML = "Hide Source";
+    source.style.display = "block";
+  } else {
+    btn.innerHTML = "Show Source";
+    source.style.display = "none";
+  }
+}
+</script></body>
+</html>
